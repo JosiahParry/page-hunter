@@ -244,10 +244,15 @@
 //! - **Pull Requests**: If you've fixed a bug or implemented a new feature, we'd love to see your work! Please submit a pull request. Make sure your code follows the existing style and all tests pass.
 
 mod page_hunter;
+#[cfg(any(feature = "pg-sqlx", feature = "mysql-sqlx", feature = "sqlite-sqlx"))]
+mod paginator;
 
 pub use page_hunter::errors::*;
 pub use page_hunter::models::*;
 pub use page_hunter::records_pagination::*;
+
+#[cfg(any(feature = "pg-sqlx", feature = "mysql-sqlx", feature = "sqlite-sqlx"))]
+pub use paginator::*;
 
 #[cfg(any(feature = "pg-sqlx", feature = "mysql-sqlx", feature = "sqlite-sqlx"))]
 pub use page_hunter::sqlx_pagination::*;
